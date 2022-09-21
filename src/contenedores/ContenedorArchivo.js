@@ -27,7 +27,7 @@ class ContenedorArchivo {
         if (productLength.length > 0) {
             try {
                 let products = await this.getAll()
-                let newLastProduct  = products[products.length - 1].id + 1;
+                let newLastProduct  = parseInt(products[products.length - 1].id) + 1;
                 obj.id = newLastProduct;
                 obj.timestamp = Date.now()
                 products.push(obj)

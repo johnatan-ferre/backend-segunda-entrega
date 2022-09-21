@@ -42,11 +42,12 @@ function soloAdmins(req, res, next) {
 const productosRouter = new Router()
 
 productosRouter.get('/', async (req, res) => {
-    
+    res.send(await productosApi.getAll())
 })
 
 productosRouter.get('/:id', async (req, res) => {
-    
+    const { id } = req.params
+    res.send(await productosApi.getById())
 })
 
 productosRouter.post('/', soloAdmins, async (req, res) => {
