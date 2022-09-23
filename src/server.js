@@ -51,15 +51,20 @@ productosRouter.get('/:id', async (req, res) => {
 })
 
 productosRouter.post('/', soloAdmins, async (req, res) => {
-    
+    productosApi.save(req.body)
+    res.json(productosApi.getAll())
 })
 
 productosRouter.put('/:id', soloAdmins, async (req, res) => {
-    
+   const { id } = req.params
+   productosApi.update(req.body, parseInt(id))
+   res.json(productosApi.getAll()) 
 })
 
 productosRouter.delete('/:id', soloAdmins, async (req, res) => {
-    
+    const { id } = req.params
+    productosApi.delete(parseInt(id))
+    res.json(productosApi.getAll())
 })
 
 //--------------------------------------------
@@ -68,15 +73,18 @@ productosRouter.delete('/:id', soloAdmins, async (req, res) => {
 const carritosRouter = new Router()
 
 carritosRouter.get('/', async (req, res) => {
-    
+   res.send(await carritosApi.getAll()) 
 })
 
 carritosRouter.post('/', async (req, res) => {
-    
+    carritosApi.save(req.body)
+    res.json(carritosApi.getAll())
 })
 
 carritosRouter.delete('/:id', async (req, res) => {
-    
+    const { id } = req.params
+    carritosApi.delete(parseInt(id))
+    res.json(carritosApi.getAll())
 })
 
 //--------------------------------------------------

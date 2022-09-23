@@ -6,11 +6,11 @@ await mongoose.connect(config.mongodb.cnxStr, config.mongodb.options)
 
 class ContenedorMongoDb {
 
-    constructor(nombreColeccion, esquema) {
-        this.coleccion = mongoose.model(nombreColeccion, esquema)
+    constructor(productos, productos) {
+        this.coleccion = mongoose.model(productos, productos)
     }
 
-    async listar(id) {
+    async getById(id) {
         try {
             const elemReadById = await this.coleccion.find({ "_id": id }, {__v: 0})
             if (elemReadById.length != 0) {
@@ -23,11 +23,11 @@ class ContenedorMongoDb {
         }
     }
 
-    async listarAll() {
+    async getAll() {
         const elemRead = await this.coleccion.find()
     }
 
-    async guardar(nuevoElem) {
+    async save(nuevoElem) {
         const nuevoElem = {
             title: 'Regla',
             price: 120,
@@ -37,18 +37,18 @@ class ContenedorMongoDb {
         const savedElem = await elemSaveModel.save()
     }
 
-    async actualizar(nuevoElem) {
+    async update(nuevoElem) {
         const updatedElem = await this.coleccion.updateOne(
             { title: 'Regla'}, { $set: {stock: 100} }
         )
     }
 
-    async borrar(id) {
+    async deleteById(id) {
         const elemDeletedById = await this.coleccion.find({ "_id": id }) 
         const deletedElem = await this.coleccion.deleteOne({ _id: elemDeletedById })
     }
 
-    async borrarAll() {
+    async deleteAll() {
         const deleteAll = await this.coleccion.deleteMany({})
     }
 }
