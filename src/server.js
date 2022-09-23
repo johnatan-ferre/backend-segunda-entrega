@@ -56,9 +56,9 @@ productosRouter.post('/', soloAdmins, async (req, res) => {
 })
 
 productosRouter.put('/:id', soloAdmins, async (req, res) => {
-   const { id } = req.params
-   productosApi.update(req.body, parseInt(id))
-   res.json(productosApi.getAll()) 
+    const { id } = req.params
+    productosApi.update(req.body, parseInt(id))
+    res.json(productosApi.getAll()) 
 })
 
 productosRouter.delete('/:id', soloAdmins, async (req, res) => {
@@ -73,7 +73,7 @@ productosRouter.delete('/:id', soloAdmins, async (req, res) => {
 const carritosRouter = new Router()
 
 carritosRouter.get('/', async (req, res) => {
-   res.send(await carritosApi.getAll()) 
+    res.send(await carritosApi.getAll()) 
 })
 
 carritosRouter.post('/', async (req, res) => {
